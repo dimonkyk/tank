@@ -1,11 +1,12 @@
-import pygame, time, tank_player
+import pygame, time, tank_player, options, ball
 
 pygame.init()
 s = 0
-screen = pygame.display.set_mode([1000, 500])
+screen = pygame.display.set_mode([options.SCREEN_X,options.SCREEN_Y])
 tank = tank_player.Tank(0, 209)
+ballpy = ball.Ball(20,209)
 groopa = pygame.sprite.Group()
-groopa.add(tank, )
+groopa.add(tank,ballpy)
 while 1 == 1:
     tank.move()
     time.sleep(1 / 60)
