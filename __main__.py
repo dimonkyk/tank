@@ -4,9 +4,8 @@ pygame.init()
 s = 0
 screen = pygame.display.set_mode([options.SCREEN_X,options.SCREEN_Y])
 tank = tank_player.Tank(0, 209)
-ballpy = ball.Ball(20,209)
 groopa = pygame.sprite.Group()
-groopa.add(tank,ballpy)
+groopa.add(tank)
 while 1 == 1:
     tank.move()
     time.sleep(1 / 60)
@@ -35,6 +34,13 @@ while 1 == 1:
             tank.speedx = 0
         if d.type == pygame.KEYUP and d.key == pygame.K_UP:
             tank.speedy = 0
+
+        if d.type == pygame.KEYDOWN and d.key == pygame.K_SPACE:
+            ballpy = ball.Ball(tank.rect.right,tank.rect.centery-2)
+            groopa.add(ballpy)
+    print(tank.rect.x,tank.rect.y)
+
+    groopa.update()
 
     screen.fill([s, 164, 231])
     if s < 255:
