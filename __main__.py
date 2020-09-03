@@ -1,6 +1,7 @@
 import pygame, time, tank_player, options, ball
 
 pygame.init()
+tims=-3000
 s = 0
 screen = pygame.display.set_mode([options.SCREEN_X,options.SCREEN_Y])
 tank = tank_player.Tank(0, 209)
@@ -35,10 +36,13 @@ while 1 == 1:
         if d.type == pygame.KEYUP and d.key == pygame.K_UP:
             tank.speedy = 0
 
+        vrem = pygame.time.get_ticks()
+        rasn = vrem - tims
         if d.type == pygame.KEYDOWN and d.key == pygame.K_SPACE:
-            ballpy = ball.Ball(tank.rect.right,tank.rect.centery-2)
-            groopa.add(ballpy)
-    print(tank.rect.x,tank.rect.y)
+            if rasn>=3000:
+                tims = pygame.time.get_ticks()
+                ballpy = ball.Ball(tank.rect.right, tank.rect.centery - 2)
+                groopa.add(ballpy)
 
     groopa.update()
 
