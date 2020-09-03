@@ -1,6 +1,8 @@
 import pygame, time, tank_player, options, ball
 
 pygame.init()
+shr=pygame.font.SysFont("arial",10,True)
+clock=pygame.time.Clock()
 tims=-3000
 s = 0
 screen = pygame.display.set_mode([options.SCREEN_X,options.SCREEN_Y])
@@ -9,7 +11,7 @@ groopa = pygame.sprite.Group()
 groopa.add(tank)
 while 1 == 1:
     tank.move()
-    time.sleep(1 / 60)
+    clock.tick(60)
     a = pygame.event.get()
     for d in a:
         if d.type == 12:
@@ -49,5 +51,11 @@ while 1 == 1:
     screen.fill([s, 164, 231])
     if s < 255:
         s += 1
+
+    i=clock.get_fps()
+    i=str(i)
+    fps=shr.render(i,False,[0,0,0])
+    screen.blit(fps,[0,0])
+
     groopa.draw(screen)
     pygame.display.flip()
